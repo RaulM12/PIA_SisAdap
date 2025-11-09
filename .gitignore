@@ -1,0 +1,16 @@
+# Entorno Virtual
+.venv/
+
+# Archivos de modelo y entrenamiento
+modelo_guia_mty_final/
+results_mty_guide/
+
+# Archivo de datos generados
+corpus_mty_total.txt
+
+# Cache de Python
+__pycache__/
+*.pyc
+
+# Archivos de Sistema macOS
+.DS_Store

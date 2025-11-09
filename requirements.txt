@@ -1,0 +1,10 @@
+# requirements.txt
+transformers
+datasets
+torch
+requests
+beautifulsoup4
+pandas
+lxml
+gradio
+accelerate
