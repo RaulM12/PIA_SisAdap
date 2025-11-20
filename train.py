@@ -10,7 +10,7 @@ import torch
 
 # --- Definiciones Globales ---
 MODEL_NAME = "distilgpt2"
-CORPUS_FILE = "corpus_mty_total.txt"
+CORPUS_FILE = "data/processed/corpus_mty_total.txt"
 MODEL_PATH = "./modelo_guia_mty_final" # La carpeta donde se guardará el modelo
 
 # --- 1. Recolección de Datos (Web Scraping) ---
@@ -76,16 +76,11 @@ if __name__ == "__main__":
     
     print("--- Iniciando Proceso de Entrenamiento ---")
 
-    # --- Paso 1: Recolectar Datos ---
-    # Limpiamos el corpus antiguo si existe, para empezar de cero
-    if os.path.exists(CORPUS_FILE):
-        os.remove(CORPUS_FILE)
-        print(f"Archivo de corpus antiguo '{CORPUS_FILE}' eliminado.")
-
-    # ** DESCOMENTA O AGREGA MÁS FUENTES AQUÍ **
-    collect_corpus("https://inner.mx/2021/01/14/datos-que-no-sabias-de-la-macroplaza/", CORPUS_FILE)
-    collect_corpus("https://blog.superboletos.com/conoce-los-monumentos-mas-emblematicos-de-monterrey/", CORPUS_FILE)
-    collect_corpus("https://www.mexicodesconocido.com.mx/el-cabrito-platillo-tipico-de-monterrey-nuevo-leon.html", CORPUS_FILE)
+    # --- Paso 1: Validar Corpus Procesado ---
+    if not os.path.exists(CORPUS_FILE):
+        print(f"Error: No se encontró el archivo {CORPUS_FILE}.")
+        print("Ejecuta primero 'py -3 scripts/build_corpus.py' para generarlo.")
+        exit()
 
     # --- Paso 2: Cargar y Tokenizar Corpus ---
     try:
